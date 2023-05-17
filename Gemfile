@@ -28,6 +28,9 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem 'devise'
+gem 'awesome_print'
+gem 'pry-rails'
+gem 'rails-erd'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
