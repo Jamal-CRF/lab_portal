@@ -1,9 +1,21 @@
-<h1>Detalhes do Exame</h1>
+<div class="container">
+  <h1>Detalhes do Exame</h1>
 
-<p><strong>Descrição:</strong> <%= @exame.description %></p>
-<p><strong>Médico:</strong> <%= @exame.doctor.name %></p>
-<p><strong>Paciente:</strong> <%= @exame.patient.name %></p>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Descrição</h5>
+      <p class="card-text"><%= @exame.description %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Médico:</strong> <%= @exame.doctor.name %></li>
+      <li class="list-group-item"><strong>Paciente:</strong> <%= @exame.patient.name %></li>
+      <!-- Outras informações do exame -->
+    </ul>
+  </div>
 
-<!-- Outras informações do exame -->
+  <% if current_user.doctor? %>
+    <%= link_to 'Editar Exame', edit_exame_path(@exame), class: "btn btn-primary mt-3" %>
+  <% end %>
 
-<%= link_to 'Voltar', exames_path %>
+  <%= link_to 'Voltar', exames_path, class: "btn btn-primary mt-3" %>
+</div>

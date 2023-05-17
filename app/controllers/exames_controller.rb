@@ -4,7 +4,7 @@ class ExamesController < ApplicationController
   before_action :check_doctor_permission, only: [:new, :create, :edit, :update]
 
   def index
-    @exames = current_user.doctor? ? Exame.all : current_user.patient_exames
+    @exames = current_user.doctor? ? current_user.doctor_exames : current_user.patient_exames
   end
 
   def show

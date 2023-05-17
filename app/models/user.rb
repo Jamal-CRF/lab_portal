@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :patient_exames, class_name: 'Exame', foreign_key: 'patient_id'
   validates :name, presence: true
   validates :phone_number, presence: true
+  
 
 
   accepts_nested_attributes_for :user_hospitals
@@ -34,7 +35,7 @@ class User < ApplicationRecord
   end
   
   def doctor_exames
-    Exame.all
+    Exame.joins(:doctor).where(doctor: { id: id })
   end
   
   def patient_exames 

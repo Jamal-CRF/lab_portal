@@ -1,0 +1,24 @@
+<div class="container">
+  <h1>Editar Exame</h1>
+
+  <%= form_with model: @exame, url: exame_path(@exame), method: :patch do |form| %>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :doctor_id, class: "form-label" %>
+      <%= form.collection_select :doctor_id, User.doctors, :id, :name, { include_blank: true }, { class: "form-select", disabled: true } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :patient_id, class: "form-label" %>
+      <%= form.collection_select :patient_id, User.patients, :id, :name, { include_blank: true }, { class: "form-select", disabled: true } %>
+    </div>
+
+    <div class="text-end">
+      <%= form.submit "Salvar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

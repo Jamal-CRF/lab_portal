@@ -1,16 +1,24 @@
-<h1>Lista de Exames</h1>
+<div class="container">
+  <h1 class="text-center mt-5 mb-4">Lista de Exames</h1>
 
-<ul>
-  <% @exames.each do |exame| %>
-    <%= link_to exame.description, exame_path(exame) %>
+  <div class="row">
+    <% @exames.each do |exame| %>
+      <div class="col-md-4">
+        <div class="card mb-3">
+          <div class="card-body text-center">
+            <h5 class="card-title mb-3"><%= exame.title %></h5>
+            <p class="card-text"><strong>Médico:</strong> <%= exame.doctor.name %></p>
+            <p class="card-text"><strong>Paciente:</strong> <%= exame.patient.name %></p>
+            <%= link_to 'Ver Detalhes', exame_path(exame), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if current_user.doctor? %>
+    <div class="text-center">
+      <%= link_to 'Cadastrar Novo Exame', new_exame_path, class: 'btn btn-success' %>
+    </div>
   <% end %>
-</ul>
-
-<% if current_user.doctor? %>
-  <%= link_to 'Cadastrar Novo Exame', new_exame_path, class: 'btn btn-primary' %>
-
-
-<% end %>
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-
-<button class="btn btn-primary">Clique aqui</button>
+</div>

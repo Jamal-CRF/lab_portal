@@ -19,7 +19,6 @@ gem "puma", "~> 5.0"
 gem "importmap-rails"
 
 
-
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
@@ -80,3 +79,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "cssbundling-rails", "~> 1.1"

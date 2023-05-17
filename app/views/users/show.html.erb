@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Meus Dados</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Nome: <%= current_user.name %></h5>
+      <p class="card-text">Email: <%= current_user.email %></p>
+      <p class="card-text">Telefone: <%= current_user.phone_number %></p>
+      <!-- Adicione mais campos do usuário conforme necessário -->
+
+      <%= link_to "Editar Dados", edit_user_registration_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

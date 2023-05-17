@@ -27,7 +27,7 @@ end
 end
 
 # Criação de 100 exames
-exame_descriptions = [
+exame_titles = [
   "Exame de sangue completo",
   "Ressonância magnética do cérebro",
   "Tomografia computadorizada do tórax",
@@ -45,7 +45,8 @@ exame_descriptions = [
 
 100.times do
   exame = Exame.create(
-    description: exame_descriptions.sample,
+    title: exame_titles.sample,
+    description: Faker::Lorem.paragraph_by_chars(number: 1000),
     doctor_id: User.joins(:user_hospitals).where(user_hospitals: { role: "doctor" }).sample.id,
     patient_id: User.joins(:user_hospitals).where(user_hospitals: { role: "patient" }).sample.id
   )

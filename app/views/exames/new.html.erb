@@ -1,21 +1,23 @@
-<h1>Cadastrar Novo Exame</h1>
+<div class="container">
+  <h1>Cadastrar Novo Exame</h1>
 
-<%= form_with model: @exame, url: exames_path do |form| %>
-  <div>
-    <%= form.label :description, 'Descrição' %>
-    <%= form.text_area :description %>
-  </div>
+  <%= form_with model: @exame, url: exames_path do |form| %>
+    <div class="mb-3">
+      <%= form.label :description, 'Descrição' %>
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
 
-  <% if current_user.doctor? %>
-    <%= form.hidden_field :doctor_id, value: current_user.id %>
+    <% if current_user.doctor? %>
+      <%= form.hidden_field :doctor_id, value: current_user.id %>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :patient_id, 'Paciente' %>
+      <%= form.collection_select :patient_id, User.patients, :id, :name, { include_blank: true }, { class: 'form-select' } %>
+    </div>
+
+    <div class="text-end">
+      <%= form.submit 'Salvar', class: 'btn btn-primary' %>
+    </div>
   <% end %>
-
-  <div>
-    <%= form.label :patient_id, 'Paciente' %>
-    <%= form.collection_select :patient_id, User.patients, :id, :name %>
-  </div>
-
-  <div>
-    <%= form.submit 'Salvar' %>
-  </div>
-<% end %>
+</div>
