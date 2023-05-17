@@ -1,0 +1,9 @@
+<h1>Detalhes do Exame</h1>
+
+<p><strong>Descrição:</strong> <%= @exame.description %></p>
+<p><strong>Médico:</strong> <%= @exame.doctor.name %></p>
+<p><strong>Paciente:</strong> <%= @exame.patient.name %></p>
+
+<!-- Outras informações do exame -->
+
+<%= link_to 'Voltar', exames_path %>

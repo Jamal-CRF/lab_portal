@@ -10,20 +10,34 @@ class User < ApplicationRecord
 
   has_many :doctor_exames, class_name: 'Exame', foreign_key: 'doctor_id'
   has_many :patient_exames, class_name: 'Exame', foreign_key: 'patient_id'
+  validates :name, presence: true
+  validates :phone_number, presence: true
 
 
-  def doctor_exames
-    Exame.all
+  accepts_nested_attributes_for :user_hospitals
+
+
+  def self.doctors ## query otimizada para evitar N+1
+    joins(:user_hospitals).where(user_hospitals: { role: 'doctor' })
   end
+
+  def self.patients
+    joins(:user_hospitals).where(user_hospitals: { role: 'patient' })
+  end
+  
   def doctor?
     user_hospitals.exists?(role: 'doctor')
   end
-
+  
   def patient?
     user_hospitals.exists?(role: 'patient')
   end
-
-  def patient_exames
+  
+  def doctor_exames
+    Exame.all
+  end
+  
+  def patient_exames 
     Exame.joins(:patient).where(patient: { id: id })
   end
 end

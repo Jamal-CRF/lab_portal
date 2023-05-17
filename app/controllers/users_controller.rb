@@ -14,8 +14,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    binding.pry
     @user = User.new(user_params)
-    if @user.save
+  
+    if @user.save!
       redirect_to user_path(@user), notice: "User was successfully created."
     else
       render :new
@@ -44,6 +46,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:nome, :email, :phone_number, :avatar, :password)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :phone_number, user_hospitals_attributes: [:role, :hospital_id])
   end
 end

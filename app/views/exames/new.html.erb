@@ -1,0 +1,21 @@
+<h1>Cadastrar Novo Exame</h1>
+
+<%= form_with model: @exame, url: exames_path do |form| %>
+  <div>
+    <%= form.label :description, 'Descrição' %>
+    <%= form.text_area :description %>
+  </div>
+
+  <% if current_user.doctor? %>
+    <%= form.hidden_field :doctor_id, value: current_user.id %>
+  <% end %>
+
+  <div>
+    <%= form.label :patient_id, 'Paciente' %>
+    <%= form.collection_select :patient_id, User.patients, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.submit 'Salvar' %>
+  </div>
+<% end %>
