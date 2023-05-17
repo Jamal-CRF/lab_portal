@@ -1,9 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @users = User.all
-  end
 
   def show
     @user = User.find(params[:id])
@@ -14,7 +11,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    binding.pry
     @user = User.new(user_params)
   
     if @user.save!

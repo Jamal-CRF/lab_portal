@@ -35,6 +35,7 @@ gem 'awesome_print'
 gem 'pry-rails'
 gem 'faker'
 gem 'rails-erd'
+gem 'phonelib'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

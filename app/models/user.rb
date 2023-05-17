@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  require_relative '../services/phone_normalizer_service.rb'
+  before_validation :normalize_phone_number, on: :create
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -22,6 +24,9 @@ class User < ApplicationRecord
     joins(:user_hospitals).where(user_hospitals: { role: 'doctor' })
   end
 
+  def normalize_phone_number
+    self.phone_number = PhoneNormalizerService.normalize(phone_number)
+  end
   def self.patients
     joins(:user_hospitals).where(user_hospitals: { role: 'patient' })
   end
