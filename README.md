@@ -12,7 +12,6 @@
 <p>Bootstrap</p>
 <p>Faker</p>
 <p>Phonelib</p>
-<strong>active_support - provides several utility classes and standard library extensions that are useful for Ruby applications.</strong>
 
 Essas são apenas algumas das principais dependências utilizadas no LabPortal. 
 
