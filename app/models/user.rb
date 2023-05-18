@@ -13,7 +13,9 @@ class User < ApplicationRecord
   has_many :doctor_exames, class_name: 'Exame', foreign_key: 'doctor_id'
   has_many :patient_exames, class_name: 'Exame', foreign_key: 'patient_id'
   validates :name, presence: true
+  validates :email, presence: true
   validates :phone_number, presence: true
+ 
   
 
 
@@ -39,6 +41,9 @@ class User < ApplicationRecord
     user_hospitals.exists?(role: 'patient')
   end
   
+  def exames
+    Exame.where('doctor_id = ? OR patient_id = ?', id, id)
+  end
   def doctor_exames
     Exame.joins(:doctor).where(doctor: { id: id })
   end
