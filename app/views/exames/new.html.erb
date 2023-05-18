@@ -3,6 +3,11 @@
 
   <%= form_with model: @exame, url: exames_path do |form| %>
     <div class="mb-3">
+      <%= form.label :title, 'Título' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
       <%= form.label :description, 'Descrição' %>
       <%= form.text_area :description, class: 'form-control' %>
     </div>

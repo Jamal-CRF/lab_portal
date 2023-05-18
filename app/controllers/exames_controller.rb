@@ -41,7 +41,7 @@ class ExamesController < ApplicationController
   end
 
   def exame_params
-    params.require(:exame).permit(:description, :doctor_id, :patient_id)
+    params.require(:exame).permit(:title,:description, :doctor_id, :patient_id)
   end
 
   def check_doctor_permission

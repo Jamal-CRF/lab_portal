@@ -37,6 +37,8 @@ gem 'faker'
 gem 'rails-erd'
 gem 'phonelib'
 gem 'rspec-rails'
+gem 'factory_bot_rails'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
