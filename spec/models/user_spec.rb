@@ -3,81 +3,41 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'validations' do
     it 'is valid with valid attributes' do
-      user = User.new(
-        name: Faker::Name.name,
-        email: Faker::Internet.email,
-        phone_number: Faker::PhoneNumber.cell_phone,
-        password: '123123'
-      )
+      user = FactoryBot.build(:user)
       expect(user).to be_valid
     end
 
     it 'is not valid without a name' do
-      user = User.new(
-        name: nil,
-        email: Faker::Internet.email,
-        phone_number: Faker::PhoneNumber.cell_phone,
-        password: '123123'
-      )
+      user = FactoryBot.build(:user, name: nil)
       expect(user).to_not be_valid
     end
 
-    it 'is not valid without a email' do
-      user = User.new(
-        name: Faker::Name.name,
-        email: nil,
-        phone_number: Faker::PhoneNumber.cell_phone,
-        password: '123123'
-      )
+    it 'is not valid without an email' do
+      user = FactoryBot.build(:user, email: nil)
       expect(user).to_not be_valid
     end
 
-    it 'is not valid without a phone_number' do
-      user = User.new(
-        name: Faker::Name.name,
-        email: Faker::Internet.email,
-        phone_number: nil,
-        password: '123123'
-      )
+    it 'is not valid without a phone number' do
+      user = FactoryBot.build(:user, phone_number: nil)
       expect(user).to_not be_valid
     end
 
     it 'is not valid without a password' do
-      user = User.new(
-        name: Faker::Name.name,
-        email: Faker::Internet.email,
-        phone_number: Faker::PhoneNumber.cell_phone,
-        password: nil
-      )
+      user = FactoryBot.build(:user, password: nil)
       expect(user).to_not be_valid
     end
 
     it 'is not valid with a duplicate email' do
-      user = User.create(
-        name: Faker::Name.name,
-        email: Faker::Internet.email,
-        phone_number: Faker::PhoneNumber.cell_phone,
-        password: '123123'
-      )
-      user2 = User.new(
-        name: Faker::Name.name,
-        email: user.email,
-        phone_number: Faker::PhoneNumber.cell_phone,
-        password: '123123'
-      )
-      expect(user2).to_not be_valid
+      email = Faker::Internet.email
+      FactoryBot.create(:user, email: email)
+      user = FactoryBot.build(:user, email: email)
+      expect(user).to_not be_valid
     end
 
     it 'normalizes phone number' do
       phone_number = '1234567890'
-      user = User.new(
-        name: Faker::Name.name,
-        email: Faker::Internet.email,
-        phone_number: phone_number,
-        password: '123123'
-      )
+      user = FactoryBot.build(:user, phone_number: phone_number)
       user.save
-    
       expect(user.phone_number).to eq(PhoneNormalizerService.normalize(phone_number))
     end
   end

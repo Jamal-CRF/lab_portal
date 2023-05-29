@@ -12,6 +12,7 @@ class ExamesController < ApplicationController
 
   def new
     @exame = Exame.new
+    @patients = User.patients.order(:name)
   end
 
   def create

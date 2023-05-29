@@ -16,9 +16,9 @@
     <% end %>
   </div>
 
-  <% if current_user.doctor? %>
-    <div class="text-center">
-      <%= link_to 'Cadastrar Novo Exame', new_exame_path, class: 'btn btn-success' %>
-    </div>
-  <% end %>
+ <% if doctor? %>
+  <div class="text-center">
+    <%= link_to 'Cadastrar Novo Exame', new_exame_path, class: 'btn btn-success' %>
+  </div>
+<% end %>
 </div>

@@ -13,12 +13,9 @@
         </li>
         <% if current_user.present? %>
           <li class="nav-item">
-            <%= link_to "Meus Dados", user_path(current_user), class: "nav-link" %>
+            <%= navbar_links %>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
           <li class="nav-item">
             <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
           </li>
