@@ -3,7 +3,7 @@
   
 </p>
 <h1>LabPortal</h1>
-<p> LabPortal é umm MVP para gerenciamento de exames médicos, by <a href= "https://almosthackers.net/"> AlmostHackers</a>.</p>    
+<p> Laboral is an MVP for managing medical exams, by <a href= "https://almosthackers.net/"> AlmostHackers</a>.</p>    
 
 <h2> 🛠 Dependencies</h2>
 
@@ -13,8 +13,51 @@
 <p>Faker</p>
 <p>Phonelib</p>
 
-Essas são apenas algumas das principais dependências utilizadas no LabPortal. 
+These are just some of the main dependencies used in LabPortal. 
 
+<h2> Setup </h2>
+
+Clone the repository:
+
+```sh
+  git clone https://github.com/seu-usuario/lab_portal.git
+  ```
+Access the project directory:
+
+```sh
+  cd lab_portal
+  ```
+Install the Ruby dependencies:
+
+```sh
+  bundle install
+  ```
+Run database migrations:
+```sh
+  rails db:migrate
+  ```
+
+Start the local server:
+
+```sh
+  rails server
+  ```
+Access the app in your browser:
+
+```sh
+  http://localhost:3000
+  ```
+
+After the seed command completes, you can check the generated doctor and patient emails by running the following commands in the console:
+```sh
+  puts User.joins(:user_hospitals).where(user_hospitals: { role: "doctor" }).pluck(:email)
+  puts User.joins(:user_hospitals).where(user_hospitals: { role: "patient" }).pluck(:email)
+  ```
+Write down a doctor email and a patient email for later use. Passwords, by default, are the same for medical or patient users:
+
+```sh
+  123123
+  ```
 
 <h2> Author</h2>
 
