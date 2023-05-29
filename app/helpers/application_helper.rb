@@ -4,10 +4,6 @@ module ApplicationHelper
   end
 
   def navbar_links
-    if current_user.present?
-      link_to "Exames", exames_path, class: "nav-link"
-    else
-      link_to "Login", new_user_session_path, class: "nav-link"
-    end
+    link_to "Exames", exames_path, class: "nav-link" if current_user.present?
   end
 end
