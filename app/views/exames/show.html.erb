@@ -3,6 +3,8 @@
 
   <div class="card">
     <div class="card-body">
+      <h5 class="card-title">Título</h5>
+      <p class="card-text"><%= @exame.title %></p>
       <h5 class="card-title">Descrição</h5>
       <p class="card-text"><%= @exame.description %></p>
     </div>
@@ -12,7 +14,7 @@
     </ul>
   </div>
 
-  <% if current_user.doctor? %>
+  <% if doctor? %>
     <%= link_to 'Editar Exame', edit_exame_path(@exame), class: "btn btn-primary mt-3" %>
   <% end %>
 
